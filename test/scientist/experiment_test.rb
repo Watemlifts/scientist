@@ -492,7 +492,7 @@ describe Scientist::Experiment do
       @ex.clean { "So Clean" }
 
       err = assert_raises(Scientist::Experiment::MismatchError) { @ex.run }
-      assert_match /So Clean/, err.message
+      assert_match(/So Clean/, err.message)
     end
 
     it "doesn't raise when there is a mismatch if raise on mismatches is disabled" do
