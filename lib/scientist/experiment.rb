@@ -28,7 +28,7 @@ module Scientist::Experiment
   end
 
   # A mismatch, raised when raise_on_mismatches is enabled.
-  class MismatchError < Exception
+  class MismatchError < RuntimeError
     attr_reader :name, :result
 
     def initialize(name, result)
