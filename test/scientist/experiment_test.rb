@@ -288,7 +288,7 @@ describe Scientist::Experiment do
   end
 
   it "reports an error and returns the original value when an error is raised in a clean block" do
-    @ex.clean { |value| raise "kaboom" }
+    @ex.clean { |_value| raise "kaboom" }
 
     @ex.use { "control" }
     @ex.try { "candidate" }
@@ -328,7 +328,7 @@ describe Scientist::Experiment do
     it "rescues errors raised in the cohort determination block" do
       @ex.use { 5670 }
       @ex.try { 5670 }
-      @ex.cohort { |res| raise "intentional" }
+      @ex.cohort { |_res| raise "intentional" }
 
       @ex.run
 
@@ -412,9 +412,9 @@ describe Scientist::Experiment do
 
     it "calls multiple ignore blocks to see if any match" do
       called_one = called_two = called_three = false
-      @ex.ignore { |a, b| called_one   = true; false }
-      @ex.ignore { |a, b| called_two   = true; false }
-      @ex.ignore { |a, b| called_three = true; false }
+      @ex.ignore { |_a, _b| called_one   = true; false }
+      @ex.ignore { |_a, _b| called_two   = true; false }
+      @ex.ignore { |_a, _b| called_three = true; false }
       refute @ex.ignore_mismatched_observation?(@a, @b)
       assert called_one
       assert called_two
@@ -423,9 +423,9 @@ describe Scientist::Experiment do
 
     it "only calls ignore blocks until one matches" do
       called_one = called_two = called_three = false
-      @ex.ignore { |a, b| called_one   = true; false }
-      @ex.ignore { |a, b| called_two   = true; true  }
-      @ex.ignore { |a, b| called_three = true; false }
+      @ex.ignore { |_a, _b| called_one   = true; false }
+      @ex.ignore { |_a, _b| called_two   = true; true  }
+      @ex.ignore { |_a, _b| called_three = true; false }
       assert @ex.ignore_mismatched_observation?(@a, @b)
       assert called_one
       assert called_two
