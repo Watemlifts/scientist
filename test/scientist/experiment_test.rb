@@ -149,7 +149,7 @@ describe Scientist::Experiment do
       true
     end
 
-    def ex.publish(result)
+    def ex.publish(_result)
       raise "boomtown"
     end
 
@@ -164,7 +164,7 @@ describe Scientist::Experiment do
   end
 
   it "reports publishing errors" do
-    def @ex.publish(result)
+    def @ex.publish(_result)
       raise "boomtown"
     end
 

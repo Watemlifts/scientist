@@ -130,7 +130,7 @@ module Scientist::Experiment
   # and return true or false.
   #
   # Returns the block.
-  def compare(*args, &block)
+  def compare(*_args, &block)
     @_scientist_comparator = block
   end
 
@@ -140,7 +140,7 @@ module Scientist::Experiment
   # and return true or false.
   #
   # Returns the block.
-  def compare_errors(*args, &block)
+  def compare_errors(*_args, &block)
     @_scientist_error_comparator = block
   end
 
@@ -202,7 +202,7 @@ module Scientist::Experiment
   # Called when an exception is raised while running an internal operation,
   # like :publish. Override this method to track these exceptions. The
   # default implementation re-raises the exception.
-  def raised(operation, error)
+  def raised(_operation, error)
     raise error
   end
 
